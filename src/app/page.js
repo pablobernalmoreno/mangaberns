@@ -9,19 +9,61 @@ import {
 } from "@mui/material";
 
 const myMangas = [
+    {
+    title: "Berserk",
+    image:
+      "https://www.nippon.com/es/ncommon/contents/japan-topics/1261990/1261990.jpg",
+    page: "https://www.natomanga.com/manga/berserk",
+    id: 0,
+  },
   {
     title: "Witch Hat Atelier",
     image:
       "https://cdn.shopify.com/s/files/1/0265/1088/4906/files/witch-hat-atelier-1-paperback-graphic-novels-351.webp",
     page: "https://witchhatateliermanga.com",
-    id: 0,
+    id: 1,
   },
   {
-    title: "More than lovers less than friends",
+    title: "More than Lovers less than Friends",
     image:
       "https://www.harum.io/cdn/shop/files/capture_20250120145642292.jpg?v=1746762714",
     page: "https://danke.moe/read/manga/more-than-lovers/",
-    id: 1,
+    id: 2,
+  },
+  {
+    title: "Whisper Me a Love Song",
+    image:
+      "https://m.media-amazon.com/images/I/71EoX6V+mnL.jpg",
+    page: "https://www.natomanga.com/manga/whisper-me-a-love-song",
+    id: 3,
+  },
+  {
+    title: "Ancient Magus Bride",
+    image:
+      "https://cdnx.jumpseller.com/spookyhouse/image/2030700/resize/640/500?1649814341",
+    page: "https://www.natomanga.com/manga/mahou-tsukai-no-yome",
+    id: 4,
+  },
+  {
+    title: "Goblin Slayer",
+    image:
+      "https://images.cdn3.buscalibre.com/fit-in/360x360/1f/3f/1f3f8841403c7340c7320bc5288ee3fb.jpg",
+    page: "https://www.natomanga.com/manga/goblin-slayer",
+    id: 5,
+  },
+  {
+    title: "Record of Ragnarok",
+    image:
+      "https://preview.redd.it/tlybkmyizdo81.jpg?width=1080&crop=smart&auto=webp&s=d69c12d833493f33546367a68476d78ac8b1cdcc",
+    page: "https://www.natomanga.com/manga/record-of-ragnarok",
+    id: 6,
+  },
+  {
+    title: "Mieruko Chan",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/e/e1/Mieruko-chan_volume_1_cover.jpg",
+    page: "https://www.natomanga.com/manga/mieruko-chan",
+    id: 7,
   },
 ];
 
@@ -31,17 +73,19 @@ export default function Home() {
       sx={{
         width: "100vw",
         height: "100vh",
+        margin: '34px',
         display: "flex",
+        flexWrap: 'wrap',
         justifyContent: "center",
         alignItems: "center",
       }}
     >
       {myMangas?.map((manga) => (
-        <Card key={manga?.id} sx={{ width: 300, height: 300, margin: "16px" }}>
+        <Card key={manga?.id} sx={{ width: 450, height: 600, margin: "16px" }}>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="200"
+              height="600"
               image={manga?.image}
               alt={manga?.title}
               onClick={() => {
