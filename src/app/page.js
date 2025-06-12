@@ -88,11 +88,11 @@ export default function Home() {
       }}
     >
       {myMangas?.map((manga) => (
-        <Card key={manga?.id} sx={{ width: 450, height: 600, margin: "16px" }}>
+        <Card key={manga?.id} sx={{ width: 300, height: 400, margin: "16px" }}>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="600"
+              height="300"
               image={manga?.image}
               alt={manga?.title}
               onClick={() => {
