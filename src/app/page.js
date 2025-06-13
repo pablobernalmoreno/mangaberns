@@ -79,6 +79,13 @@ const myMangas = [
     page: "https://www.natomanga.com/manga/solo-leveling-ragnarok",
     id: 9,
   },
+  {
+    title: "Vinland Saga",
+    image:
+      "https://proassets.planetadelibros.com.co/usuaris/libros/fotos/387/original/386267_portada_vinland-saga-n-25_makoto-yukimura_202207110854.jpg",
+    page: "https://www.natomanga.com/manga/vinland-saga",
+    id: 10,
+  },
 ];
 
 export default function Home() {
