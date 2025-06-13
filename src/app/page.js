@@ -72,6 +72,13 @@ const myMangas = [
     page: "https://www.natomanga.com/manga/mieruko-chan",
     id: 8,
   },
+  {
+    title: "Solo Leveling: Ragnarok",
+    image:
+      "https://preview.redd.it/solo-leveling-ragnarok-thoughts-on-the-series-so-far-v0-vadlx1vh0w3e1.png?auto=webp&s=d35d35dc972d9d11fa42a73f96c5da92fa62d452",
+    page: "https://www.natomanga.com/manga/solo-leveling-ragnarok",
+    id: 9,
+  },
 ];
 
 export default function Home() {
