@@ -20,7 +20,7 @@ const myMangas = [
     title: "Witch Hat Atelier",
     image:
       "https://cdn.shopify.com/s/files/1/0265/1088/4906/files/witch-hat-atelier-1-paperback-graphic-novels-351.webp",
-    page: "https://witchhatateliermanga.com",
+    page: "https://www.natomanga.com/manga/tongari-boushi-no-atelier",
     id: 1,
   },
   {
