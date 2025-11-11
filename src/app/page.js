@@ -34,7 +34,7 @@ const myMangas = [
     title: "Whisper Me a Love Song",
     image:
       "https://m.media-amazon.com/images/I/71EoX6V+mnL.jpg",
-    page: "https://www.natomanga.com/manga/whisper-me-a-love-song",
+    page: "https://www.natomanga.com/manga/whispering-you-a-love-song",
     id: 3,
   },
   {
