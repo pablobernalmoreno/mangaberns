@@ -79,6 +79,12 @@ const myMangas = [
     page: "https://www.natomanga.com/manga/solo-leveling-ragnarok",
     id: 9,
   },
+  {
+    title: "Dinosaurs Sanctuary",
+    image: "https://pbs.twimg.com/media/GUNbK4nbEAIYDCQ.jpg",
+    page: "https://www.natomanga.com/manga/dinosaurs-sanctuary",
+    id: 10, 
+  },
 ];
 
 export default function Home() {
