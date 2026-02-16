@@ -75,7 +75,7 @@ const myMangas = [
   {
     title: "Solo Leveling: Ragnarok",
     image:
-      "https://preview.redd.it/solo-leveling-ragnarok-thoughts-on-the-series-so-far-v0-vadlx1vh0w3e1.png?auto=webp&s=d35d35dc972d9d11fa42a73f96c5da92fa62d452",
+      "https://us-a.tapas.io/sa/e9/d349afb2-623f-41c4-9035-3ce1637805b9_z.jpg",
     page: "https://www.natomanga.com/manga/solo-leveling-ragnarok",
     id: 9,
   },
