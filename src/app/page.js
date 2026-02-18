@@ -85,6 +85,12 @@ const myMangas = [
     page: "https://www.natomanga.com/manga/dinosaurs-sanctuary",
     id: 10, 
   },
+  {
+    title: "Wind Breaker",
+    image: "https://futoikarasu.com/wp-content/uploads/2023/10/portada-wb.png",
+    page: "https://www.natomanga.com/manga/windbreaker",
+    id: 11, 
+  },
 ];
 
 export default function Home() {
