@@ -41,7 +41,7 @@ const myMangas = [
     title: "Tales of Demons and Gods",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8Xo_FtYRd6Ce_ZLx-lzZsqwjx_XwIzIUOw&s",
-    page: "https://manhuaplus.com/manga/tales-of-demons-and-gods01/",
+    page: "https://www.natomanga.com/manga/tales-of-demons-and-gods",
     id: 4,
   },
   {
