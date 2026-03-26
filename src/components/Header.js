@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import PropTypes from "prop-types";
 import { useAuth } from "@/context/AuthContext";
 import supabase from "@/lib/supabase";
 import LoginModal from "./LoginModal";
@@ -48,7 +47,3 @@ export default function Header() {
     </>
   );
 }
-
-Header.propTypes = {
-  // no props — auth state comes from context
-};
