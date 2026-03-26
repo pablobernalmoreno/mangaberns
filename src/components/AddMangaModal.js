@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import {
   Modal,
   Box,
@@ -10,35 +9,35 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import PropTypes from "prop-types";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import supabase from "@/lib/supabase";
 import "./Modal.css";
 
-const emptyForm = { name: "", image: "", link: "", description: "" };
+const validationSchema = Yup.object({
+  name: Yup.string().required("Title is required"),
+  image: Yup.string().url("Must be a valid URL").required("Image URL is required"),
+  link: Yup.string().url("Must be a valid URL").required("Manga link is required"),
+  description: Yup.string(),
+});
 
 export default function AddMangaModal({ open, onClose }) {
   const router = useRouter();
-  const [form, setForm] = useState(emptyForm);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-    const { error } = await supabase.from("mangas").insert([form]);
-    setLoading(false);
-    if (error) {
-      setError(error.message);
-    } else {
-      onClose();
-      setForm(emptyForm);
-      router.refresh();
-    }
-  };
+  const formik = useFormik({
+    initialValues: { name: "", image: "", link: "", description: "" },
+    validationSchema,
+    onSubmit: async (values, { setStatus, resetForm }) => {
+      const { error } = await supabase.from("mangas").insert([values]);
+      if (error) {
+        setStatus(error.message);
+      } else {
+        resetForm();
+        onClose();
+        router.refresh();
+      }
+    },
+  });
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -46,19 +45,22 @@ export default function AddMangaModal({ open, onClose }) {
         <Typography variant="h6" className="modal-title">
           Add Manga
         </Typography>
-        {error && (
+        {formik.status && (
           <Alert severity="error" className="modal-alert">
-            {error}
+            {formik.status}
           </Alert>
         )}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <TextField
             name="name"
             label="Title"
             fullWidth
             required
-            value={form.name}
-            onChange={handleChange}
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
             className="modal-field"
           />
           <TextField
@@ -66,8 +68,11 @@ export default function AddMangaModal({ open, onClose }) {
             label="Image URL"
             fullWidth
             required
-            value={form.image}
-            onChange={handleChange}
+            value={formik.values.image}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.image && Boolean(formik.errors.image)}
+            helperText={formik.touched.image && formik.errors.image}
             className="modal-field"
           />
           <TextField
@@ -75,8 +80,11 @@ export default function AddMangaModal({ open, onClose }) {
             label="Manga Link"
             fullWidth
             required
-            value={form.link}
-            onChange={handleChange}
+            value={formik.values.link}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.link && Boolean(formik.errors.link)}
+            helperText={formik.touched.link && formik.errors.link}
             className="modal-field"
           />
           <TextField
@@ -85,17 +93,20 @@ export default function AddMangaModal({ open, onClose }) {
             fullWidth
             multiline
             rows={3}
-            value={form.description}
-            onChange={handleChange}
+            value={formik.values.description}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.description && Boolean(formik.errors.description)}
+            helperText={formik.touched.description && formik.errors.description}
             className="modal-field"
           />
           <Button
             type="submit"
             variant="contained"
             fullWidth
-            disabled={loading}
+            disabled={formik.isSubmitting}
           >
-            {loading ? "Adding..." : "Add Manga"}
+            {formik.isSubmitting ? "Adding..." : "Add Manga"}
           </Button>
         </form>
       </Box>

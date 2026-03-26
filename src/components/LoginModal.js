@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import {
   Modal,
   Box,
@@ -9,31 +8,30 @@ import {
   Alert,
 } from "@mui/material";
 import PropTypes from "prop-types";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import supabase from "@/lib/supabase";
 import "./Modal.css";
 
-export default function LoginModal({ open, onClose }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+const validationSchema = Yup.object({
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    setLoading(false);
-    if (error) setError(error.message);
-    else {
-      onClose();
-      setEmail("");
-      setPassword("");
-    }
-  };
+export default function LoginModal({ open, onClose }) {
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    validationSchema,
+    onSubmit: async (values, { setStatus, resetForm }) => {
+      const { error } = await supabase.auth.signInWithPassword(values);
+      if (error) {
+        setStatus(error.message);
+      } else {
+        resetForm();
+        onClose();
+      }
+    },
+  });
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -41,37 +39,45 @@ export default function LoginModal({ open, onClose }) {
         <Typography variant="h6" className="modal-title">
           Login
         </Typography>
-        {error && (
+        {formik.status && (
           <Alert severity="error" className="modal-alert">
-            {error}
+            {formik.status}
           </Alert>
         )}
-        <form onSubmit={handleLogin}>
+        <form onSubmit={formik.handleSubmit}>
           <TextField
+            name="email"
             label="Email"
             type="email"
             fullWidth
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
             className="modal-field"
           />
           <TextField
+            name="password"
             label="Password"
             type="password"
             fullWidth
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
             className="modal-field"
           />
           <Button
             type="submit"
             variant="contained"
             fullWidth
-            disabled={loading}
+            disabled={formik.isSubmitting}
           >
-            {loading ? "Logging in..." : "Login"}
+            {formik.isSubmitting ? "Logging in..." : "Login"}
           </Button>
         </form>
       </Box>
