@@ -1,0 +1,25 @@
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 32px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.modal-title {
+  margin-bottom: 16px !important;
+}
+
+.modal-alert {
+  margin-bottom: 16px !important;
+}
+
+.modal-field {
+  margin-bottom: 16px !important;
+}

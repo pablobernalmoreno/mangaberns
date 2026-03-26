@@ -1,0 +1,74 @@
+/* MangaGrid */
+.manga-grid-container {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.manga-grid-title {
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: bold !important;
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* MangaCard */
+.manga-card {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.manga-card:hover {
+  transform: translateY(-4px);
+}
+
+.manga-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+}
+
+.manga-card-content {
+  flex-grow: 1;
+}
+
+/* Responsive breakpoints */
+@media (min-width: 600px) {
+  .manga-grid-container {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .manga-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .manga-grid-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .manga-grid-title {
+    margin-bottom: 40px;
+  }
+
+  .manga-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .manga-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

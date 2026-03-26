@@ -1,29 +1,16 @@
 "use client";
 import { Box, Container, Typography } from "@mui/material";
+import PropTypes from "prop-types";
 import MangaCard from "./MangaCard";
+import "./MangaStyles.css";
 
 export default function MangaGrid({ mangas }) {
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 } }}>
-      <Typography
-        variant="h4"
-        component="h1"
-        sx={{ mb: { xs: 3, md: 5 }, textAlign: "center", fontWeight: "bold" }}
-      >
+    <Container maxWidth="xl" className="manga-grid-container">
+      <Typography variant="h4" component="h1" className="manga-grid-title">
         My Manga List
       </Typography>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "1fr",
-            sm: "repeat(2, 1fr)",
-            md: "repeat(3, 1fr)",
-            lg: "repeat(4, 1fr)",
-          },
-          gap: { xs: 2, md: 3 },
-        }}
-      >
+      <Box className="manga-grid">
         {mangas.map((manga) => (
           <MangaCard key={manga.id} manga={manga} />
         ))}
@@ -31,3 +18,15 @@ export default function MangaGrid({ mangas }) {
     </Container>
   );
 }
+
+MangaGrid.propTypes = {
+  mangas: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    })
+  ).isRequired,
+};
