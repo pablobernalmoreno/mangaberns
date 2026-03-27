@@ -2,15 +2,15 @@
 import { Box, Container, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import MangaCard from "./MangaCard";
-import "./MangaStyles.css";
+import styles from "./MangaGrid.module.css";
 
 export default function MangaGrid({ mangas }) {
   return (
-    <Container maxWidth="xl" className="manga-grid-container">
-      <Typography variant="h4" component="h1" className="manga-grid-title">
+    <Container maxWidth="xl" className={styles.mangaGridContainer}>
+      <Typography variant="h4" component="h1" className={styles.mangaGridTitle}>
         My Manga List
       </Typography>
-      <Box className="manga-grid">
+      <Box className={styles.mangaGrid}>
         {mangas.map((manga) => (
           <MangaCard key={manga.id} manga={manga} />
         ))}

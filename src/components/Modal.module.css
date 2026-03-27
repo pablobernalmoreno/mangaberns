@@ -1,4 +1,4 @@
-.modal-box {
+.modalBox {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,14 +12,14 @@
   outline: none;
 }
 
-.modal-title {
+.modalTitle {
   margin-bottom: 16px !important;
 }
 
-.modal-alert {
+.modalAlert {
   margin-bottom: 16px !important;
 }
 
-.modal-field {
+.modalField {
   margin-bottom: 16px !important;
 }

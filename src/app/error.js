@@ -1,20 +1,11 @@
 "use client";
 import { Box, Button, Container, Typography } from "@mui/material";
+import styles from "./error.module.css";
 
 export default function Error({ error, reset }) {
   return (
     <Container maxWidth="sm">
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          gap: 2,
-          textAlign: "center",
-        }}
-      >
+      <Box className={styles.errorContainer}>
         <Typography variant="h5" fontWeight="bold">
           Something went wrong
         </Typography>

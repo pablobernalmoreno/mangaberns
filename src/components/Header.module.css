@@ -1,8 +1,8 @@
-.header-title {
+.headerTitle {
   flex-grow: 1;
 }
 
-.header-actions {
+.headerActions {
   display: flex;
   gap: 8px;
   align-items: center;

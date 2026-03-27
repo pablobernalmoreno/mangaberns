@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import PropTypes from "prop-types";
-import "./MangaStyles.css";
+import styles from "./MangaCard.module.css";
 
 export default function MangaCard({ manga }) {
   return (
@@ -12,18 +12,18 @@ export default function MangaCard({ manga }) {
       href={manga.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="manga-card"
+      className={styles.mangaCard}
     >
-      <Box className="manga-card-image-wrapper">
+      <Box className={styles.mangaCardImageWrapper}>
         <Image
           src={manga.image}
           alt={manga.name}
           fill
-          style={{ objectFit: "cover" }}
+          className={styles.mangaCardImage}
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
       </Box>
-      <CardContent className="manga-card-content">
+      <CardContent className={styles.mangaCardContent}>
         <Typography gutterBottom variant="h6" component="h2">
           {manga.name}
         </Typography>

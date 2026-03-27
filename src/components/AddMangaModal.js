@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import supabase from "@/lib/supabase";
-import "./Modal.css";
+import styles from "./Modal.module.css";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Title is required"),
@@ -41,12 +41,12 @@ export default function AddMangaModal({ open, onClose }) {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Box className="modal-box">
-        <Typography variant="h6" className="modal-title">
+      <Box className={styles.modalBox}>
+        <Typography variant="h6" className={styles.modalTitle}>
           Add Manga
         </Typography>
         {formik.status && (
-          <Alert severity="error" className="modal-alert">
+          <Alert severity="error" className={styles.modalAlert}>
             {formik.status}
           </Alert>
         )}
@@ -61,7 +61,7 @@ export default function AddMangaModal({ open, onClose }) {
             onBlur={formik.handleBlur}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
-            className="modal-field"
+            className={styles.modalField}
           />
           <TextField
             name="image"
@@ -73,7 +73,7 @@ export default function AddMangaModal({ open, onClose }) {
             onBlur={formik.handleBlur}
             error={formik.touched.image && Boolean(formik.errors.image)}
             helperText={formik.touched.image && formik.errors.image}
-            className="modal-field"
+            className={styles.modalField}
           />
           <TextField
             name="link"
@@ -85,7 +85,7 @@ export default function AddMangaModal({ open, onClose }) {
             onBlur={formik.handleBlur}
             error={formik.touched.link && Boolean(formik.errors.link)}
             helperText={formik.touched.link && formik.errors.link}
-            className="modal-field"
+            className={styles.modalField}
           />
           <TextField
             name="description"
@@ -98,7 +98,7 @@ export default function AddMangaModal({ open, onClose }) {
             onBlur={formik.handleBlur}
             error={formik.touched.description && Boolean(formik.errors.description)}
             helperText={formik.touched.description && formik.errors.description}
-            className="modal-field"
+            className={styles.modalField}
           />
           <Button
             type="submit"

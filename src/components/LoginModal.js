@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import supabase from "@/lib/supabase";
-import "./Modal.css";
+import styles from "./Modal.module.css";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -23,7 +23,8 @@ export default function LoginModal({ open, onClose }) {
     initialValues: { email: "", password: "" },
     validationSchema,
     onSubmit: async (values, { setStatus, resetForm }) => {
-      const { error } = await supabase.auth.signInWithPassword(values);
+      const { email, password } = values;
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
         setStatus(error.message);
       } else {
@@ -35,12 +36,12 @@ export default function LoginModal({ open, onClose }) {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Box className="modal-box">
-        <Typography variant="h6" className="modal-title">
+      <Box className={styles.modalBox}>
+        <Typography variant="h6" className={styles.modalTitle}>
           Login
         </Typography>
         {formik.status && (
-          <Alert severity="error" className="modal-alert">
+          <Alert severity="error" className={styles.modalAlert}>
             {formik.status}
           </Alert>
         )}
@@ -56,7 +57,7 @@ export default function LoginModal({ open, onClose }) {
             onBlur={formik.handleBlur}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
-            className="modal-field"
+            className={styles.modalField}
           />
           <TextField
             name="password"
@@ -69,7 +70,7 @@ export default function LoginModal({ open, onClose }) {
             onBlur={formik.handleBlur}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
-            className="modal-field"
+            className={styles.modalField}
           />
           <Button
             type="submit"

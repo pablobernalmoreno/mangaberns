@@ -5,7 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import supabase from "@/lib/supabase";
 import LoginModal from "./LoginModal";
 import AddMangaModal from "./AddMangaModal";
-import "./Header.css";
+import styles from "./Header.module.css";
 
 export default function Header() {
   const { user } = useAuth();
@@ -20,11 +20,11 @@ export default function Header() {
     <>
       <AppBar position="sticky" className="header">
         <Toolbar>
-          <Typography variant="h6" className="header-title">
+          <Typography variant="h6" className={styles.headerTitle}>
             MangaBerns
           </Typography>
           {user ? (
-            <Box className="header-actions">
+            <Box className={styles.headerActions}>
               <Button color="inherit" onClick={() => setAddOpen(true)}>
                 + Add Manga
               </Button>
