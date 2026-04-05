@@ -3,17 +3,30 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 32px;
+  background:
+    linear-gradient(170deg, var(--modal-bg-1), var(--modal-bg-2)),
+    repeating-linear-gradient(
+      90deg,
+      var(--modal-pattern),
+      var(--modal-pattern) 1px,
+      transparent 1px,
+      transparent 15px
+    );
+  border: 1px solid var(--modal-border);
+  border-radius: 24px;
+  padding: 28px;
   width: 90%;
-  max-width: 480px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 520px;
+  box-shadow: 0 24px 50px var(--modal-shadow);
   outline: none;
+  animation: riseIn 0.4s ease both;
 }
 
 .modalTitle {
-  margin-bottom: 16px !important;
+  margin-bottom: 14px !important;
+  font-family: var(--font-cormorant), Georgia, serif !important;
+  font-size: 2rem !important;
+  color: var(--ink);
 }
 
 .modalAlert {
@@ -22,4 +35,53 @@
 
 .modalField {
   margin-bottom: 16px !important;
+}
+
+.modalBox :global(.MuiTextField-root) {
+  margin-bottom: 16px !important;
+}
+
+.modalBox :global(.MuiFormLabel-root) {
+  color: var(--ink-soft);
+}
+
+.modalBox :global(.MuiInputBase-root) {
+  border-radius: 14px;
+  background: var(--input-bg);
+  color: var(--ink);
+}
+
+.modalBox :global(.MuiOutlinedInput-notchedOutline) {
+  border-color: var(--input-border);
+}
+
+.modalBox :global(.Mui-focused .MuiOutlinedInput-notchedOutline) {
+  border-color: var(--accent) !important;
+}
+
+.modalBox :global(.MuiButton-root) {
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding: 0.74rem 1rem;
+  margin-top: 6px;
+  color: #fff1e8;
+  background: linear-gradient(135deg, var(--button-primary-1), var(--button-primary-2));
+}
+
+.modalBox :global(.MuiButton-root:hover) {
+  background: linear-gradient(135deg, var(--button-primary-1), var(--button-primary-2));
+  filter: brightness(0.94);
+}
+
+@media (max-width: 560px) {
+  .modalBox {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .modalTitle {
+    font-size: 1.75rem !important;
+  }
 }

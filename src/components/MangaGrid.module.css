@@ -1,44 +1,114 @@
 .mangaGridContainer {
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: clamp(1.5rem, 3vw, 2.8rem);
+  padding-bottom: 2.8rem;
+}
+
+.mangaHero {
+  position: relative;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(160deg, var(--hero-bg-1), var(--hero-bg-2)),
+    repeating-linear-gradient(
+      90deg,
+      var(--hero-pattern),
+      var(--hero-pattern) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  border-radius: 30px;
+  padding: clamp(1.5rem, 4vw, 2.8rem);
+  box-shadow: var(--shadow);
+  margin-bottom: clamp(1.3rem, 3vw, 2.2rem);
+  animation: riseIn 0.6s ease both;
+}
+
+.kicker {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.22em;
+  color: var(--kicker);
 }
 
 .mangaGridTitle {
-  margin-bottom: 24px;
-  text-align: center;
-  font-weight: bold !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-family: var(--font-cormorant), Georgia, serif !important;
+  font-size: clamp(2rem, 6.5vw, 4.1rem) !important;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.mangaGridSubtitle {
+  max-width: 56ch;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.mangaStatBadge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--stat-border);
+  background: var(--stat-bg);
+  color: var(--stat-fg);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .mangaGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 1rem;
+}
+
+.emptyState {
+  border: 1px dashed var(--empty-border);
+  border-radius: 24px;
+  background: var(--empty-bg);
+  padding: 2rem 1.2rem;
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-cormorant), Georgia, serif !important;
+  color: var(--ink);
+}
+
+.emptyBody {
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 600px) {
   .mangaGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
   }
 }
 
 @media (min-width: 900px) {
   .mangaGridContainer {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-
-  .mangaGridTitle {
-    margin-bottom: 40px;
+    padding-bottom: 3.5rem;
   }
 
   .mangaGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 1.4rem;
   }
 }
 
 @media (min-width: 1200px) {
   .mangaGrid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .mangaHero {
+    border-radius: 24px;
   }
 }

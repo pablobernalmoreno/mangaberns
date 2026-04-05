@@ -1,13 +1,56 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --paper: #151a23;
+  --paper-strong: #1f2530;
+  --ink: #e8dfcf;
+  --ink-soft: #beb29e;
+  --accent: #c9bca3;
+  --accent-2: #968b79;
+  --line: #4a5261;
+  --surface: rgba(30, 36, 48, 0.78);
+  --surface-strong: rgba(41, 48, 62, 0.92);
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.36);
+  --focus: #c9bca3;
+  --bg-radial-1: rgba(201, 188, 163, 0.14);
+  --bg-radial-2: rgba(61, 67, 79, 0.35);
+  --bg-top: #131822;
+  --bg-mid: #252c38;
+  --bg-bottom: #3d4450;
+  --texture-line: rgba(201, 188, 163, 0.08);
+  --skip-bg: #3d434f;
+  --skip-fg: #eee5d5;
+  --skip-border: #968b79;
+  --header-bg-1: rgba(24, 29, 40, 0.94);
+  --header-bg-2: rgba(43, 50, 64, 0.92);
+  --header-border: rgba(150, 139, 121, 0.35);
+  --kicker: #c7baa1;
+  --button-primary-1: #968b79;
+  --button-primary-2: #c9bca3;
+  --button-primary-border: rgba(201, 188, 163, 0.4);
+  --button-primary-shadow: rgba(201, 188, 163, 0.22);
+  --ghost-bg: rgba(61, 67, 79, 0.6);
+  --ghost-bg-hover: rgba(76, 83, 96, 0.86);
+  --ghost-border: rgba(150, 139, 121, 0.4);
+  --hero-bg-1: rgba(28, 34, 45, 0.9);
+  --hero-bg-2: rgba(45, 52, 66, 0.76);
+  --hero-pattern: rgba(201, 188, 163, 0.06);
+  --stat-bg: #3d434f;
+  --stat-border: #968b79;
+  --stat-fg: #e8dfcf;
+  --empty-border: rgba(150, 139, 121, 0.45);
+  --empty-bg: rgba(34, 40, 52, 0.8);
+  --card-border: rgba(150, 139, 121, 0.46);
+  --card-bg-1: rgba(27, 33, 44, 0.9);
+  --card-bg-2: rgba(53, 61, 75, 0.86);
+  --card-shadow: rgba(0, 0, 0, 0.28);
+  --card-shadow-hover: rgba(201, 188, 163, 0.16);
+  --card-overlay: rgba(14, 18, 26, 0.62);
+  --modal-bg-1: rgba(27, 33, 44, 0.94);
+  --modal-bg-2: rgba(54, 61, 76, 0.92);
+  --modal-pattern: rgba(201, 188, 163, 0.06);
+  --modal-border: rgba(150, 139, 121, 0.48);
+  --modal-shadow: rgba(0, 0, 0, 0.34);
+  --input-bg: rgba(24, 30, 40, 0.86);
+  --input-border: rgba(150, 139, 121, 0.46);
 }
 
 html,
@@ -16,18 +59,37 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-lato), "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(1200px 520px at 14% -18%, var(--bg-radial-1), transparent 62%),
+    radial-gradient(900px 420px at 100% 8%, var(--bg-radial-2), transparent 58%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 48%, var(--bg-bottom) 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image: repeating-linear-gradient(
+    -10deg,
+    transparent,
+    transparent 9px,
+    var(--texture-line) 10px,
+    transparent 11px
+  );
+  mix-blend-mode: soft-light;
 }
 
 a {
@@ -35,8 +97,67 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.skipLink {
+  position: absolute;
+  left: 0.75rem;
+  top: -120px;
+  z-index: 1000;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.55rem;
+  background: var(--skip-bg);
+  color: var(--skip-fg);
+  border: 1px solid var(--skip-border);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.skipLink:focus-visible {
+  top: 0.75rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+:focus-visible {
+  scroll-margin-top: 90px;
+}
+
+.appShell {
+  min-height: calc(100vh - 72px);
+  padding-bottom: 4rem;
+}
+
+.surfaceCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(3px);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

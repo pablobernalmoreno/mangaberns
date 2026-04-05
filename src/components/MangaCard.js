@@ -1,18 +1,20 @@
-"use client";
 import Image from "next/image";
-import Link from "next/link";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import styles from "./MangaCard.module.css";
 
-export default function MangaCard({ manga }) {
+export default function MangaCard({ manga, index }) {
+  const isFirstCard = index === 0;
+
   return (
     <Card
-      component={Link}
+      component="a"
       href={manga.link}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`${manga.name} (opens in a new tab)`}
       className={styles.mangaCard}
+      style={{ "--card-delay": `${Math.min(index * 60, 420)}ms` }}
     >
       <Box className={styles.mangaCardImageWrapper}>
         <Image
@@ -20,18 +22,22 @@ export default function MangaCard({ manga }) {
           alt={manga.name}
           fill
           className={styles.mangaCardImage}
+          loading={isFirstCard ? "eager" : "lazy"}
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
       </Box>
       <CardContent className={styles.mangaCardContent}>
-        <Typography gutterBottom variant="h6" component="h2">
+        <Typography gutterBottom variant="h6" component="h2" className={styles.mangaCardTitle}>
           {manga.name}
         </Typography>
         {manga.description && (
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" className={styles.mangaCardDescription}>
             {manga.description}
           </Typography>
         )}
+        <Typography component="p" className={styles.mangaCardCta}>
+          Read now {"->"}
+        </Typography>
       </CardContent>
     </Card>
   );
@@ -45,4 +51,9 @@ MangaCard.propTypes = {
     link: PropTypes.string.isRequired,
     description: PropTypes.string,
   }).isRequired,
+  index: PropTypes.number,
+};
+
+MangaCard.defaultProps = {
+  index: 0,
 };

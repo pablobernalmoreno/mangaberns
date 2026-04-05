@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { useAuth } from "@/context/AuthContext";
 import supabase from "@/lib/supabase";
-import LoginModal from "./LoginModal";
-import AddMangaModal from "./AddMangaModal";
 import styles from "./Header.module.css";
+
+const LoginModal = dynamic(() => import("./LoginModal"), { ssr: false });
+const AddMangaModal = dynamic(() => import("./AddMangaModal"), { ssr: false });
 
 export default function Header() {
   const { user } = useAuth();
@@ -16,32 +18,57 @@ export default function Header() {
     await supabase.auth.signOut();
   };
 
+  const preloadLoginModal = () => {
+    if (typeof LoginModal.preload === "function") LoginModal.preload();
+  };
+
+  const preloadAddModal = () => {
+    if (typeof AddMangaModal.preload === "function") AddMangaModal.preload();
+  };
+
   return (
     <>
-      <AppBar position="sticky" className="header">
-        <Toolbar>
-          <Typography variant="h6" className={styles.headerTitle}>
-            MangaBerns
-          </Typography>
-          {user ? (
-            <Box className={styles.headerActions}>
-              <Button color="inherit" onClick={() => setAddOpen(true)}>
-                + Add Manga
+      <AppBar position="sticky" className={styles.headerBar} elevation={0}>
+        <Toolbar className={styles.headerToolbar}>
+          <Box className={styles.brandBlock}>
+            <Typography component="p" className={styles.brandKicker}>
+              MY PRIVATE LIBRARY
+            </Typography>
+            <Typography variant="h6" className={styles.headerTitle}>
+              MangaBerns
+            </Typography>
+          </Box>
+          <Box className={styles.headerActions}>
+            {user ? (
+              <>
+                <Button
+                  className={styles.headerButton}
+                  onMouseEnter={preloadAddModal}
+                  onFocus={preloadAddModal}
+                  onClick={() => setAddOpen(true)}
+                >
+                  + Add Manga
+                </Button>
+                <Button className={styles.headerGhostButton} onClick={handleLogout}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button
+                className={styles.headerButton}
+                onMouseEnter={preloadLoginModal}
+                onFocus={preloadLoginModal}
+                onClick={() => setLoginOpen(true)}
+              >
+                Login
               </Button>
-              <Button color="inherit" onClick={handleLogout}>
-                Logout
-              </Button>
-            </Box>
-          ) : (
-            <Button color="inherit" onClick={() => setLoginOpen(true)}>
-              Login
-            </Button>
-          )}
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
 
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
-      {user && (
+      {loginOpen && <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />}
+      {user && addOpen && (
         <AddMangaModal open={addOpen} onClose={() => setAddOpen(false)} />
       )}
     </>

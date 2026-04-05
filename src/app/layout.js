@@ -1,37 +1,67 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lato, Cormorant_Garamond } from "next/font/google";
+import PropTypes from "prop-types";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const lato = Lato({
+  variable: "--font-lato",
+  weight: ["400", "700", "900"],
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  weight: ["500", "600", "700"],
   subsets: ["latin"],
 });
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "MangaBerns",
-  description: "A curated manga reading list — tracking what Im currently reading.",
+  description: "My private manga tracker for ongoing series I am currently reading.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "MangaBerns",
-    description: "A curated manga reading list.",
+    description: "My private manga tracker for ongoing reads.",
+    url: "/",
     type: "website",
+    siteName: "MangaBerns",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MangaBerns",
+    description: "My private manga tracker for ongoing reads.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${lato.variable} ${cormorant.variable}`}>
         <AuthProvider>
+          <a href="#main-content" className="skipLink">
+            Skip to main content
+          </a>
           <Header />
-          {children}
+          <main id="main-content" className="appShell" tabIndex={-1}>
+            {children}
+          </main>
         </AuthProvider>
       </body>
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

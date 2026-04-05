@@ -1,17 +1,12 @@
 "use client";
 import {
-  Modal,
-  Box,
-  Typography,
   TextField,
-  Button,
-  Alert,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import supabase from "@/lib/supabase";
-import styles from "./Modal.module.css";
+import FormModal from "./FormModal";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -35,54 +30,41 @@ export default function LoginModal({ open, onClose }) {
   });
 
   return (
-    <Modal open={open} onClose={onClose}>
-      <Box className={styles.modalBox}>
-        <Typography variant="h6" className={styles.modalTitle}>
-          Login
-        </Typography>
-        {formik.status && (
-          <Alert severity="error" className={styles.modalAlert}>
-            {formik.status}
-          </Alert>
-        )}
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
-            name="email"
-            label="Email"
-            type="email"
-            fullWidth
-            required
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-            className={styles.modalField}
-          />
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            fullWidth
-            required
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
-            className={styles.modalField}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            disabled={formik.isSubmitting}
-          >
-            {formik.isSubmitting ? "Logging in..." : "Login"}
-          </Button>
-        </form>
-      </Box>
-    </Modal>
+    <FormModal
+      open={open}
+      onClose={onClose}
+      title="Login"
+      status={formik.status}
+      onSubmit={formik.handleSubmit}
+      isSubmitting={formik.isSubmitting}
+      submitLabel="Login"
+      submittingLabel="Logging in..."
+    >
+      <TextField
+        name="email"
+        label="Email"
+        type="email"
+        fullWidth
+        required
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.email && Boolean(formik.errors.email)}
+        helperText={formik.touched.email && formik.errors.email}
+      />
+      <TextField
+        name="password"
+        label="Password"
+        type="password"
+        fullWidth
+        required
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}
+      />
+    </FormModal>
   );
 }
 

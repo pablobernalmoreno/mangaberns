@@ -1,10 +1,10 @@
 # Mangaberns
 
-A personal manga tracking web app built with **Next.js** and **Supabase**. Browse your manga collection, add new entries, and manage everything through a clean card-based UI.
+My personal manga tracking web app built with **Next.js** and **Supabase**. I use it to track ongoing reads, add new entries, and manage everything through a clean card-based UI.
 
 ## Features
 
-- **Manga grid** — displays your collection as cards with cover image, title, description, and a link to read
+- **Manga grid** — displays my active reads as cards with cover image, title, description, and a source link
 - **Add manga** — authenticated users can add new manga entries (title, image URL, read link, description) via a modal form with validation
 - **Authentication** — login/logout powered by Supabase Auth, with a React context (`AuthContext`) keeping session state across the app
 - **MUI components** — built with Material UI for a consistent, responsive design
@@ -27,11 +27,11 @@ A personal manga tracking web app built with **Next.js** and **Supabase**. Brows
 pnpm install
 ```
 
-2. **Set up environment variables** — create a `.env.local` file with your Supabase project credentials:
+2. **Set up environment variables** — create a `.env.local` file with my Supabase project credentials:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_URL=my-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=my-anon-key
 ```
 
 3. **Run the development server**

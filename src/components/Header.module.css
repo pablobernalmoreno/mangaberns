@@ -1,9 +1,95 @@
+.headerBar {
+  background: linear-gradient(100deg, var(--header-bg-1), var(--header-bg-2)) !important;
+  border-bottom: 1px solid var(--header-border);
+  backdrop-filter: blur(8px);
+}
+
+.headerToolbar {
+  width: min(1260px, 100%);
+  margin: 0 auto;
+  min-height: 72px !important;
+  padding: 0 12px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brandBlock {
+  display: grid;
+  line-height: 1;
+}
+
+.brandKicker {
+  font-size: 0.66rem !important;
+  letter-spacing: 0.24em;
+  color: var(--kicker);
+  margin-bottom: 4px !important;
+}
+
 .headerTitle {
-  flex-grow: 1;
+  font-family: var(--font-cormorant), Georgia, serif !important;
+  font-size: clamp(1.8rem, 3.8vw, 2.2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  color: var(--ink);
 }
 
 .headerActions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
+}
+
+.headerButton,
+.headerGhostButton {
+  border-radius: 999px !important;
+  padding: 0.5rem 1rem !important;
+  text-transform: uppercase !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.08em;
+  font-weight: 700 !important;
+}
+
+.headerButton {
+  color: #fff1e8 !important;
+  background: linear-gradient(135deg, var(--button-primary-1), var(--button-primary-2)) !important;
+  border: 1px solid var(--button-primary-border) !important;
+}
+
+.headerButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px var(--button-primary-shadow);
+}
+
+.headerButton:focus-visible,
+.headerGhostButton:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.headerGhostButton {
+  color: var(--ink) !important;
+  background: var(--ghost-bg) !important;
+  border: 1px solid var(--ghost-border) !important;
+}
+
+.headerGhostButton:hover {
+  background: var(--ghost-bg-hover) !important;
+}
+
+@media (max-width: 640px) {
+  .headerToolbar {
+    min-height: 68px !important;
+    padding: 0 10px !important;
+  }
+
+  .headerActions {
+    gap: 6px;
+  }
+
+  .headerButton,
+  .headerGhostButton {
+    padding: 0.42rem 0.8rem !important;
+  }
 }
