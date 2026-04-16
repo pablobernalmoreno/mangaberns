@@ -9,9 +9,6 @@ export default function MangaGrid({ mangas }) {
   return (
     <Container maxWidth="xl" className={styles.mangaGridContainer}>
       <Box className={styles.mangaHero}>
-        <Typography component="p" className={styles.kicker}>
-          PERSONAL TRACKER
-        </Typography>
         <Typography variant="h2" component="h1" className={styles.mangaGridTitle}>
           My Ongoing Reads
         </Typography>

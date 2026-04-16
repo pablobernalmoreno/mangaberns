@@ -1,18 +1,18 @@
-import { Lato, Cormorant_Garamond } from "next/font/google";
+import { Roboto } from "next/font/google";
 import PropTypes from "prop-types";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 
-const lato = Lato({
+const roboto = Roboto({
   variable: "--font-lato",
   weight: ["400", "700", "900"],
   subsets: ["latin"],
 });
 
-const cormorant = Cormorant_Garamond({
+const robotoDisplay = Roboto({
   variable: "--font-cormorant",
-  weight: ["500", "600", "700"],
+  weight: ["500", "700"],
   subsets: ["latin"],
 });
 
@@ -47,7 +47,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} ${cormorant.variable}`}>
+      <body className={`${roboto.variable} ${robotoDisplay.variable}`}>
         <AuthProvider>
           <a href="#main-content" className="skipLink">
             Skip to main content

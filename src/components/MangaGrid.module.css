@@ -62,7 +62,8 @@
 .mangaGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.1rem;
+  align-items: stretch;
 }
 
 .emptyState {
@@ -97,7 +98,7 @@
 
   .mangaGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
+    gap: 1.55rem;
   }
 }
 

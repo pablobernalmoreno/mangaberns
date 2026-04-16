@@ -31,9 +31,6 @@ export default function Header() {
       <AppBar position="sticky" className={styles.headerBar} elevation={0}>
         <Toolbar className={styles.headerToolbar}>
           <Box className={styles.brandBlock}>
-            <Typography component="p" className={styles.brandKicker}>
-              MY PRIVATE LIBRARY
-            </Typography>
             <Typography variant="h6" className={styles.headerTitle}>
               MangaBerns
             </Typography>
