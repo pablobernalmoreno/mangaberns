@@ -13,7 +13,7 @@ export default function MangaGrid({ mangas }) {
           My Ongoing Reads
         </Typography>
         <Typography component="p" className={styles.mangaGridSubtitle}>
-          My private shelf for manga I am currently reading as new chapters
+          My private shelf for manga and webcomics I am currently reading as new chapters
           release. Click any card to open the source and stay current.
         </Typography>
         <Box className={styles.mangaStatBadge}>{mangaCount} active reads</Box>
