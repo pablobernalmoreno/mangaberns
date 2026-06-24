@@ -59,13 +59,13 @@
 }
 
 .mangaCardImage {
-  object-fit: cover;
-  transform: scale(1.03);
-  transition: transform 0.45s ease;
+  object-fit: contain;
+  object-position: center;
+  transition: filter 0.3s ease;
 }
 
 .mangaCard:hover .mangaCardImage {
-  transform: scale(1.08) translateY(-2px);
+  filter: saturate(1.05);
 }
 
 .imagePanelOverlay {
