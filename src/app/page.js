@@ -1,6 +1,7 @@
 import supabase from "@/lib/supabase";
 import MangaGrid from "@/components/MangaGrid";
 import { cacheLife, cacheTag } from "next/cache";
+import snapshot from "@/data/mangas-snapshot.json";
 
 export const metadata = {
   title: "MangaBerns | My Ongoing Manga Tracker",
@@ -44,18 +45,25 @@ async function getMangas() {
   cacheLife("minutes");
   cacheTag("mangas");
 
-  const { data: mangas, error } = await supabase
-    .from("mangas")
-    .select("id, name, image, link, description")
-    .not("image", "is", null)
-    .not("link", "is", null)
-    .neq("image", "")
-    .neq("link", "")
-    .order("id", { ascending: true });
+  try {
+    const { data: mangas, error } = await supabase
+      .from("mangas")
+      .select("id, name, image, link, description")
+      .not("image", "is", null)
+      .not("link", "is", null)
+      .neq("image", "")
+      .neq("link", "")
+      .order("id", { ascending: true })
+      .abortSignal(AbortSignal.timeout(5000));
 
-  if (error) throw new Error(error.message);
+    if (error) throw new Error(error.message);
 
-  return mangas ?? [];
+    return mangas ?? [];
+  } catch (err) {
+    // Free Supabase projects get paused; serve the build-time snapshot instead.
+    console.warn(`Supabase unavailable, using snapshot: ${err.message}`);
+    return snapshot;
+  }
 }
 
 export default async function Home() {

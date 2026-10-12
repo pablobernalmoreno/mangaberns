@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "pnpm snapshot",
     "start": "next start",
+    "snapshot": "node --env-file-if-exists=.env.local --env-file-if-exists=.env scripts/snapshot-mangas.mjs",
     "lint": "eslint ."
   },
   "dependencies": {
