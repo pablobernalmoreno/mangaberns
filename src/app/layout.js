@@ -1,18 +1,17 @@
-import { Roboto } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import PropTypes from "prop-types";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 
-const roboto = Roboto({
-  variable: "--font-lato",
-  weight: ["400", "700", "900"],
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
-const robotoDisplay = Roboto({
-  variable: "--font-cormorant",
-  weight: ["500", "700"],
+const outfit = Outfit({
+  variable: "--font-display",
+  weight: ["500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -47,7 +46,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${robotoDisplay.variable}`}>
+      <body className={`${inter.variable} ${outfit.variable}`}>
         <AuthProvider>
           <a href="#main-content" className="skipLink">
             Skip to main content

@@ -1,14 +1,16 @@
 .headerBar {
-  background: linear-gradient(100deg, var(--header-bg-1), var(--header-bg-2)) !important;
-  border-bottom: 1px solid var(--header-border);
-  backdrop-filter: blur(8px);
+  background: rgba(8, 9, 13, 0.72) !important;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: none !important;
 }
 
 .headerToolbar {
-  width: min(1260px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
-  min-height: 72px !important;
-  padding: 0 12px !important;
+  min-height: var(--header-h) !important;
+  padding: 0 20px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,22 +18,27 @@
 }
 
 .brandBlock {
-  display: grid;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   line-height: 1;
 }
 
-.brandKicker {
-  font-size: 0.66rem !important;
-  letter-spacing: 0.24em;
-  color: var(--kicker);
-  margin-bottom: 4px !important;
+.brandBlock::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: var(--accent-grad);
+  transform: rotate(45deg);
+  box-shadow: 0 0 18px rgba(124, 140, 255, 0.7);
 }
 
 .headerTitle {
-  font-family: var(--font-cormorant), Georgia, serif !important;
-  font-size: clamp(1.8rem, 3.8vw, 2.2rem) !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.04em;
+  font-family: var(--font-display), system-ui, sans-serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
@@ -44,44 +51,38 @@
 .headerButton,
 .headerGhostButton {
   border-radius: 999px !important;
-  padding: 0.5rem 1rem !important;
-  text-transform: uppercase !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 0.08em;
-  font-weight: 700 !important;
+  padding: 0.5rem 1.1rem !important;
+  text-transform: none !important;
+  font-size: 0.86rem !important;
+  letter-spacing: 0 !important;
+  font-weight: 600 !important;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.2s;
 }
 
 .headerButton {
-  color: #fff1e8 !important;
-  background: linear-gradient(135deg, var(--button-primary-1), var(--button-primary-2)) !important;
-  border: 1px solid var(--button-primary-border) !important;
+  color: #fff !important;
+  background: var(--accent-grad) !important;
+  border: 0 !important;
 }
 
 .headerButton:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px var(--button-primary-shadow);
-}
-
-.headerButton:focus-visible,
-.headerGhostButton:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+  box-shadow: 0 10px 28px -6px rgba(124, 140, 255, 0.65);
 }
 
 .headerGhostButton {
   color: var(--ink) !important;
-  background: var(--ghost-bg) !important;
-  border: 1px solid var(--ghost-border) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
 }
 
 .headerGhostButton:hover {
-  background: var(--ghost-bg-hover) !important;
+  background: var(--surface-hover) !important;
 }
 
 @media (max-width: 640px) {
   .headerToolbar {
-    min-height: 68px !important;
-    padding: 0 10px !important;
+    padding: 0 14px !important;
   }
 
   .headerActions {
@@ -90,6 +91,6 @@
 
   .headerButton,
   .headerGhostButton {
-    padding: 0.42rem 0.8rem !important;
+    padding: 0.42rem 0.85rem !important;
   }
 }
