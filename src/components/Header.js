@@ -7,7 +7,7 @@ import supabase from "@/lib/supabase";
 import styles from "./Header.module.css";
 
 const LoginModal = dynamic(() => import("./LoginModal"), { ssr: false });
-const AddMangaModal = dynamic(() => import("./AddMangaModal"), { ssr: false });
+const MangaFormModal = dynamic(() => import("./MangaFormModal"), { ssr: false });
 
 export default function Header() {
   const { user } = useAuth();
@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   const preloadAddModal = () => {
-    if (typeof AddMangaModal.preload === "function") AddMangaModal.preload();
+    if (typeof MangaFormModal.preload === "function") MangaFormModal.preload();
   };
 
   return (
@@ -66,7 +66,7 @@ export default function Header() {
 
       {loginOpen && <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />}
       {user && addOpen && (
-        <AddMangaModal open={addOpen} onClose={() => setAddOpen(false)} />
+        <MangaFormModal open={addOpen} onClose={() => setAddOpen(false)} />
       )}
     </>
   );
