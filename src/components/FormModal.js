@@ -8,6 +8,7 @@ export default function FormModal({
   onClose,
   title,
   status,
+  statusSeverity,
   onSubmit,
   isSubmitting,
   submitLabel,
@@ -22,7 +23,7 @@ export default function FormModal({
         </Typography>
 
         {status && (
-          <Alert severity="error" className={styles.modalAlert}>
+          <Alert severity={statusSeverity} className={styles.modalAlert}>
             {status}
           </Alert>
         )}
@@ -43,6 +44,7 @@ FormModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   status: PropTypes.string,
+  statusSeverity: PropTypes.oneOf(["error", "warning", "info", "success"]),
   onSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
   submitLabel: PropTypes.string.isRequired,
@@ -52,5 +54,6 @@ FormModal.propTypes = {
 
 FormModal.defaultProps = {
   status: "",
+  statusSeverity: "error",
   isSubmitting: false,
 };

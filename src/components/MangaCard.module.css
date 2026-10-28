@@ -1,7 +1,4 @@
 .mangaCard {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
   position: relative;
   height: 100%;
   border-radius: var(--radius-lg) !important;
@@ -15,10 +12,18 @@
 }
 
 .mangaCard:hover,
-.mangaCard:focus-visible {
+.mangaCard:focus-within {
   transform: translateY(-6px);
   border-color: rgba(165, 175, 255, 0.45) !important;
   box-shadow: 0 28px 50px -24px rgba(111, 125, 255, 0.55) !important;
+}
+
+.mangaCardLink {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 
 .mangaCardImageWrapper {
@@ -37,6 +42,26 @@
 
 .mangaCard:hover .mangaCardImage {
   transform: scale(1.06);
+}
+
+.editButton {
+  position: absolute !important;
+  z-index: 2;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 36px;
+  height: 36px;
+  color: #fff !important;
+  background: rgba(8, 9, 13, 0.68) !important;
+  border: 1px solid var(--line-strong) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s, transform 0.2s var(--ease) !important;
+}
+
+.editButton:hover {
+  background: rgba(111, 125, 255, 0.88) !important;
+  transform: translateY(-2px);
 }
 
 .imagePanelOverlay {
@@ -126,5 +151,9 @@
   .openBadge {
     opacity: 1;
     transform: none;
+  }
+
+  .editButton {
+    opacity: 1;
   }
 }

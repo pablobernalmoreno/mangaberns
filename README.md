@@ -5,7 +5,7 @@ My personal manga tracking web app built with **Next.js** and **Supabase**. I us
 ## Features
 
 - **Manga grid** — displays my active reads as cards with cover image, title, description, and a source link
-- **Add manga** — authenticated users can add new manga entries (title, image URL, read link, description) via a modal form with validation
+- **Manage manga** — authenticated users can add and edit manga entries (title, image URL, read link, description) via a validated modal form
 - **Authentication** — login/logout powered by Supabase Auth, with a React context (`AuthContext`) keeping session state across the app
 - **MUI components** — built with Material UI for a consistent, responsive design
 
@@ -42,12 +42,14 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the app.
 
+Apply the SQL files in `supabase/migrations/` to your Supabase project so authenticated users can add and edit entries.
+
 ## Project Structure
 
 ```
 src/
 ├── app/          # Next.js App Router pages and layouts
-├── components/   # UI components (MangaGrid, MangaCard, AddMangaModal, LoginModal, Header)
+├── components/   # UI components (MangaGrid, MangaCard, MangaFormModal, LoginModal, Header)
 ├── context/      # AuthContext — Supabase session state
 └── lib/          # Supabase client
 ```
